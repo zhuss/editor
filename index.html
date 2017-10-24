@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>editor</title>
+	<link rel="stylesheet" type="text/css" href="editor.css">
+	<style type="text/css">
+		body{
+			margin: 0;
+			padding: 0 40px;
+		}
+		.title{
+			width: 100%;
+			height: 50px;
+		}
+		.title input{
+			width: 100%;
+			height: 50px;
+			box-sizing: border-box;
+			border:none;
+			outline: none;
+			color: #333;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="title">
+		<input type="text" placeholder="在这里输入标题" name="title"/>
+	</div>
+	<div id="editor"></div>
+	<button id="submit">获取</button>
+	<script type="text/javascript" src="editor.js"></script>
+	<script type="text/javascript">
+		var zhuEditor =  new ZhuEditor("#editor");
+
+		zhuEditor.setValue("<p>12123123</p>");
+
+		var submit = document.getElementById("submit");
+		
+		submit.onclick = function(){
+			console.log(zhuEditor.getValue());
+		}
+	</script>
+</body>
+</html>
