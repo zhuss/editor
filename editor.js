@@ -8,9 +8,9 @@ function ZhuEditor(EleId){
 ZhuEditor.prototype.init = function(){
 	this.Ele.innerHTML = 
 	`<div class="editor-bar">
-		<button class="bold">B</button>
-		<button class="italic">I</button>
-		<button class="underline">U</button>
+		<button class="bold">粗体</button>
+		<button class="italic">斜体</button>
+		<button class="underline">下划线</button>
 		<button class="img">插入图片</button>
 		</div>
 	<div class="editor-body" contenteditable>
@@ -52,8 +52,8 @@ ZhuEditor.prototype.init = function(){
 
 	//粘贴监听
 	editorBody.addEventListener("paste",function(e){
-	  	var text = null;
-	  	text = (e.originalEvent || e).clipboardData.getData('text/plain');
+	  	var text = "";
+	  	text = e.clipboardData.getData('text/plain');
 	  	document.execCommand("insertText",false,text);
 	  	e.preventDefault();
 	},false);
