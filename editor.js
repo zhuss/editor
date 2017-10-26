@@ -34,7 +34,8 @@ ZhuEditor.prototype.init = function(){
 
 		}else if(e.code == "Backspace"){
 	  		if(e.target.children.length==1 && e.target.children[0].innerHTML =="<br>"){
-	  			e.returnValue=false;
+	  			
+	  			e.preventDefault();
 	  		}
 	  		//处理图片删除
 	  		if(rang.commonAncestorContainer.nodeName == "#text"
@@ -43,7 +44,7 @@ ZhuEditor.prototype.init = function(){
 	  			&&rang.commonAncestorContainer.parentNode.previousSibling.children.length
 	  			&&rang.commonAncestorContainer.parentNode.previousSibling.children[0].nodeName=="IMG"){
 	  			rang.commonAncestorContainer.parentNode.previousSibling.remove();
-	  			e.returnValue=false;
+	  			e.preventDefault();
 	  		}
 	  	}else{
 	  		_this.Ele.querySelector(".editor-placeholder").style.display = "none";
