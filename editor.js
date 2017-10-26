@@ -14,7 +14,8 @@ ZhuEditor.prototype.init = function(){
 		<button class="italic">斜体</button>
 		<button class="underline">下划线</button>
 		<button class="img">插入图片</button>
-		</div>
+	</div>
+	<div class="editor-placeholder">${this.placeholder}</div>
 	<div class="editor-body" contenteditable>
 		<p><br></p>
 	</div>`;
@@ -24,8 +25,10 @@ ZhuEditor.prototype.init = function(){
 	var italic = this.Ele.querySelector(".italic");
 	var underline = this.Ele.querySelector(".underline");
 	var img = this.Ele.querySelector(".img");
+	var _this = this;
 
 	editorBody.addEventListener("keydown",function(e){
+
 		var rang = document.getSelection().getRangeAt(0);
 		if(e.code  == "ArrowUp"||e.code  == "ArrowDown"||e.code  == "ArrowLeft"||e.code  == "ArrowRight"||e.code  == "Enter"){
 
@@ -43,6 +46,7 @@ ZhuEditor.prototype.init = function(){
 	  			e.returnValue=false;
 	  		}
 	  	}else{
+	  		_this.Ele.querySelector(".editor-placeholder").style.display = "none";
 	  		//处理前后添加文字
 	  		if(rang.commonAncestorContainer.nodeName == "P"
 	  			&&rang.commonAncestorContainer.children.length==1
@@ -51,6 +55,14 @@ ZhuEditor.prototype.init = function(){
 			}
 	  	}
 	  },false);
+
+	editorBody.addEventListener("keyup",function(e){
+		if(_this.Ele.querySelector(".editor-body").innerHTML =="<p><br></p>"){
+			_this.Ele.querySelector(".editor-placeholder").style.display = "block";
+		}else{
+			_this.Ele.querySelector(".editor-placeholder").style.display = "none";
+		}
+	},false);
 
 	//粘贴监听
 	editorBody.addEventListener("paste",function(e){
@@ -93,4 +105,5 @@ ZhuEditor.prototype.getValue = function(){
 
 ZhuEditor.prototype.setValue = function(val){
  	this.Ele.querySelector(".editor-body").innerHTML = val;
+ 	this.Ele.querySelector(".editor-placeholder").style.display = "none";
 }

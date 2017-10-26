@@ -1,6 +1,8 @@
 .editor{
 	width: 100%;
 	height: auto;
+	position: relative;
+	clear: both;
 }
 
 .editor-bar{
@@ -28,6 +30,15 @@
 
 .editor-bar button:hover{
 	background: #CCC;
+}
+
+.editor-placeholder{
+	position: absolute;
+	width: 100%;
+	left: 25px;
+	top: 66px;
+	font-size: 16px;
+	color: #666;
 }
 
 .editor-body{
