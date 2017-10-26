@@ -96,6 +96,7 @@ ZhuEditor.prototype.init = function(){
 	img.addEventListener("click",function(e){
 		let imgUrl = "http://video.yingtu.co/8/image/288559ae-3365-4130-b9dc-b7a5ef187dea.jpg";
 		document.execCommand("insertHtml", false, "<p><img src="+imgUrl+">");
+		_this.Ele.querySelector(".editor-placeholder").style.display = "none";
 	},false);
 }
 
