@@ -1,11 +1,13 @@
 
 function ZhuEditor(EleId){
 	this.Ele = document.querySelector(EleId);
+	this.placeholder = this.Ele.getAttribute("placeholder");
 	this.init(this.Ele);
 	return this;
 }
 
 ZhuEditor.prototype.init = function(){
+	console.log(this.placeholder);
 	this.Ele.innerHTML = 
 	`<div class="editor-bar">
 		<button class="bold">粗体</button>
