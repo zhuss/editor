@@ -33,9 +33,13 @@
 	<button id="submit">获取</button>
 	<script type="text/javascript" src="editor.js"></script>
 	<script type="text/javascript">
-		var zhuEditor =  new ZhuEditor("#editor");
+		var zhuEditor =  new ZhuEditor("#editor",function(event,insert){
+			console.log(event);
+			var url= "http://video.yingtu.co/8/image/288559ae-3365-4130-b9dc-b7a5ef187dea.jpg";
+			insert(url);
+		});
 
-		zhuEditor.setValue("<p>12123123</p>");
+		//zhuEditor.setValue("<p>12123123</p>");
 
 		var submit = document.getElementById("submit");
 		

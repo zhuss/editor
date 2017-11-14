@@ -1,21 +1,19 @@
 
-function ZhuEditor(EleId){
+function ZhuEditor(EleId,fn){
 	this.Ele = document.querySelector(EleId);
-	this.placeholder = this.Ele.getAttribute("placeholder");
+	this.uploadFn = fn;
 	this.init(this.Ele);
 	return this;
 }
 
 ZhuEditor.prototype.init = function(){
-	console.log(this.placeholder);
 	this.Ele.innerHTML = 
 	`<div class="editor-bar">
 		<button class="bold">粗体</button>
 		<button class="italic">斜体</button>
 		<button class="underline">下划线</button>
-		<button class="img">插入图片</button>
+		<input class="input" type="file"/>
 	</div>
-	<div class="editor-placeholder">${this.placeholder}</div>
 	<div class="editor-body" contenteditable>
 		<p><br></p>
 	</div>`;
@@ -25,6 +23,7 @@ ZhuEditor.prototype.init = function(){
 	var italic = this.Ele.querySelector(".italic");
 	var underline = this.Ele.querySelector(".underline");
 	var img = this.Ele.querySelector(".img");
+	var input = this.Ele.querySelector(".input");
 	var _this = this;
 
 	editorBody.addEventListener("keydown",function(e){
@@ -47,7 +46,6 @@ ZhuEditor.prototype.init = function(){
 	  			e.preventDefault();
 	  		}
 	  	}else{
-	  		_this.Ele.querySelector(".editor-placeholder").style.display = "none";
 	  		//处理前后添加文字
 	  		if(rang.commonAncestorContainer.nodeName == "P"
 	  			&&rang.commonAncestorContainer.children.length==1
@@ -59,9 +57,9 @@ ZhuEditor.prototype.init = function(){
 
 	editorBody.addEventListener("keyup",function(e){
 		if(_this.Ele.querySelector(".editor-body").innerHTML =="<p><br></p>"){
-			_this.Ele.querySelector(".editor-placeholder").style.display = "block";
+			//_this.Ele.querySelector(".editor-placeholder").style.display = "block";
 		}else{
-			_this.Ele.querySelector(".editor-placeholder").style.display = "none";
+			//_this.Ele.querySelector(".editor-placeholder").style.display = "none";
 		}
 	},false);
 
@@ -94,11 +92,20 @@ ZhuEditor.prototype.init = function(){
 	},false);
 
 	//插入图片
-	img.addEventListener("click",function(e){
-		let imgUrl = "http://video.yingtu.co/8/image/288559ae-3365-4130-b9dc-b7a5ef187dea.jpg";
-		document.execCommand("insertHtml", false, "<p><img src="+imgUrl+">");
-		_this.Ele.querySelector(".editor-placeholder").style.display = "none";
-	},false);
+	input.addEventListener("change",function(e){
+		editorBody.focus();
+		_this.uploadFn(e,function(url){
+			document.execCommand("insertHtml", false, "<p><img src="+url+">");
+		});
+	});
+
+	//插入图片
+	// img.addEventListener("click",function(e){
+	// 	editorBody.focus();
+	// 	_this.uploadFn(e,function(url){
+	// 		document.execCommand("insertHtml", false, "<p><img src="+url+">");
+	// 	});
+	// },false);
 }
 
 ZhuEditor.prototype.getValue = function(){
@@ -107,5 +114,4 @@ ZhuEditor.prototype.getValue = function(){
 
 ZhuEditor.prototype.setValue = function(val){
  	this.Ele.querySelector(".editor-body").innerHTML = val;
- 	this.Ele.querySelector(".editor-placeholder").style.display = "none";
 }
