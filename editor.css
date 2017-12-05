@@ -8,20 +8,21 @@
 .editor-bar{
 	width: 100%;
 	height: 41px;
-	border: 1px solid #CCC;
+	border: 1px solid #d8dce5;
 	border-bottom: none;
 	box-sizing: border-box;
-	background: #EEE;
+	background: #FFF;
 	overflow: hidden;
 }
 
 .editor-bar button{
    height: 40px;
    border:none;
+   border-radius:0; 
    padding: 0 10px;
    margin: 0;
    box-sizing: border-box;
-   background: #EEE;
+   background: #FFF;
    outline: none;
    font-size: 14px;
    font-family: -apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
@@ -29,7 +30,34 @@
 }
 
 .editor-bar button:hover{
-	background: #CCC;
+	color: #409EFF;
+	background: #ECF5FF;
+}
+
+.editor-bar .in{
+	position: relative;
+	width: 80px;
+	height: 40px;
+}
+
+.editor-bar .in:hover button{
+	color: #409EFF;
+	background: #ECF5FF;
+}
+
+.editor-bar .in input{
+	position: absolute;
+	left: 0;
+	top: -8px;
+	width: 80px;
+	height: 40px;
+	box-sizing: border-box;
+	border: none;
+	padding: 0;
+	margin: 0;
+	-webkit-appearance: none;
+	opacity: 0;
+	cursor: pointer;
 }
 
 .editor-placeholder{
@@ -45,7 +73,7 @@
 	width: 100%;
 	height: auto;
 	min-height: 400px;
-	border: 1px solid #CCC;
+	border: 1px solid #d8dce5;
 	box-sizing: border-box;
 	padding: 25px;
 	outline: none;

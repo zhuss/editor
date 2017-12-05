@@ -34,16 +34,43 @@
 		#content p img{
 			max-width: 100%;
 		}
-
+		.api{
+			padding: 30px;
+		    background: #EEE;
+		}
 	</style>
 </head>
 <body>
 	<div class="title">
 		<input type="text" placeholder="在这里输入标题" name="title"/>
 	</div>
-	<div id="editor" placeholder="在这里输入"></div>
+	<div id="editor"></div>
 	<button id="submit">获取</button>
 	<div id="content"></div>
+	<div class="api">
+<pre>
+//使用方法
+&lt;link rel="stylesheet" type="text/css" href="editor.css"&gt;
+&lt;script type="text/javascript" src="editor.js"&gt;&lt;/script&gt;
+&lt;div id="editor"&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+	var zhuEditor =  new ZhuEditor("#editor",function(event,insert){
+		var url= "http://video.yingtu.co/8/image/288559ae-3365-4130-b9dc-b7a5ef187dea.jpg";
+		insert(url);
+	});
+	//其中 #editor为富文本的id
+	//function(event,insert){
+	//	var url= "http://video.yingtu.co/8/image/288559ae-3365-4130-b9dc-b7a5ef187dea.jpg";
+	//		insert(url);
+	//}
+	//为上传图片的方法将;上传得到的url,insert(url)即可。
+&lt;/script&gt;
+//设置文本内容
+zhuEditor.setValue("&lt;p&gt;我是输入的内容&lt;/p&gt;");
+//获取文本内容
+zhuEditor.getValue();
+</pre>
+	</div>
 	<script type="text/javascript" src="editor.js"></script>
 	<script type="text/javascript">
 		var zhuEditor =  new ZhuEditor("#editor",function(event,insert){
@@ -53,6 +80,8 @@
 
 		var submit = document.getElementById("submit");
 		var content = document.getElementById("content");
+
+		zhuEditor.setValue("<p>我是输入的内容</p>");
 		
 		submit.onclick = function(){
 			var html = zhuEditor.getValue();

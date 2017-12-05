@@ -1,5 +1,6 @@
 /*******************************************************************************
-* ZhuEditor 简答的文本编辑工具、件支持简单的图文排版，去除多余样式的干扰，更有利于阅读。
+* ZhuEditor 简答的文本编辑工具、件支持简单的图文排版；
+* 去除多余样式的干扰，只保留最简单的标签，更有利于阅读。
 *******************************************************************************/
 
 function ZhuEditor(EleId,fn){
@@ -15,7 +16,7 @@ ZhuEditor.prototype.init = function(){
 		<button class="bold">粗体</button>
 		<button class="italic">斜体</button>
 		<button class="underline">下划线</button>
-		<input class="input" type="file"/>
+		<span class="in"><button>上传图片</button><input class="input" type="file" accept="image/jpg"/><span>
 	</div>
 	<div class="editor-body" contenteditable>
 		<p><br></p>
@@ -41,7 +42,8 @@ ZhuEditor.prototype.init = function(){
 	  		//处理图片删除
 	  		if(rang.commonAncestorContainer.nodeName == "#text"
 	  			&&rang.endOffset == 0
-	  			&&rang.commonAncestorContainer.parentNode.previousSibling
+				&&rang.commonAncestorContainer.parentNode.previousSibling
+				&&rang.commonAncestorContainer.parentNode.previousSibling.children
 	  			&&rang.commonAncestorContainer.parentNode.previousSibling.children.length
 	  			&&rang.commonAncestorContainer.parentNode.previousSibling.children[0].nodeName=="IMG"){
 	  			rang.commonAncestorContainer.parentNode.previousSibling.remove();
@@ -56,14 +58,6 @@ ZhuEditor.prototype.init = function(){
 			}
 	  	}
 	  },false);
-
-	// editorBody.addEventListener("keyup",function(e){
-	// 	if(_this.Ele.querySelector(".editor-body").innerHTML =="<p><br></p>"){
-	// 		_this.Ele.querySelector(".editor-placeholder").style.display = "block";
-	// 	}else{
-	// 		_this.Ele.querySelector(".editor-placeholder").style.display = "none";
-	// 	}
-	// },false);
 
 	//粘贴监听
 	editorBody.addEventListener("paste",function(e){
@@ -100,14 +94,6 @@ ZhuEditor.prototype.init = function(){
 			document.execCommand("insertHtml", false, "<p><img src="+url+">");
 		});
 	});
-
-	//插入图片
-	// img.addEventListener("click",function(e){
-	// 	editorBody.focus();
-	// 	_this.uploadFn(e,function(url){
-	// 		document.execCommand("insertHtml", false, "<p><img src="+url+">");
-	// 	});
-	// },false);
 }
 
 ZhuEditor.prototype.getValue = function(){
