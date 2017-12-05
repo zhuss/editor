@@ -23,6 +23,18 @@
 			color: #333;
 			font-size: 20px;
 		}
+	    #content{
+			padding: 0 20px;
+		}
+		#content p{
+			padding: 0;
+			margin: 20px 0;
+		}
+
+		#content p img{
+			max-width: 100%;
+		}
+
 	</style>
 </head>
 <body>
@@ -31,20 +43,21 @@
 	</div>
 	<div id="editor" placeholder="在这里输入"></div>
 	<button id="submit">获取</button>
+	<div id="content"></div>
 	<script type="text/javascript" src="editor.js"></script>
 	<script type="text/javascript">
 		var zhuEditor =  new ZhuEditor("#editor",function(event,insert){
-			console.log(event);
 			var url= "http://video.yingtu.co/8/image/288559ae-3365-4130-b9dc-b7a5ef187dea.jpg";
 			insert(url);
 		});
 
-		//zhuEditor.setValue("<p>12123123</p>");
-
 		var submit = document.getElementById("submit");
+		var content = document.getElementById("content");
 		
 		submit.onclick = function(){
-			console.log(zhuEditor.getValue());
+			var html = zhuEditor.getValue();
+			content.innerHTML = html;
+
 		}
 	</script>
 </body>

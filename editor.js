@@ -1,3 +1,6 @@
+/*******************************************************************************
+* ZhuEditor 简答的文本编辑工具、件支持简单的图文排版，去除多余样式的干扰，更有利于阅读。
+*******************************************************************************/
 
 function ZhuEditor(EleId,fn){
 	this.Ele = document.querySelector(EleId);
@@ -33,7 +36,6 @@ ZhuEditor.prototype.init = function(){
 
 		}else if(e.code == "Backspace"){
 	  		if(e.target.children.length==1 && e.target.children[0].innerHTML =="<br>"){
-	  			
 	  			e.preventDefault();
 	  		}
 	  		//处理图片删除
@@ -55,13 +57,13 @@ ZhuEditor.prototype.init = function(){
 	  	}
 	  },false);
 
-	editorBody.addEventListener("keyup",function(e){
-		if(_this.Ele.querySelector(".editor-body").innerHTML =="<p><br></p>"){
-			//_this.Ele.querySelector(".editor-placeholder").style.display = "block";
-		}else{
-			//_this.Ele.querySelector(".editor-placeholder").style.display = "none";
-		}
-	},false);
+	// editorBody.addEventListener("keyup",function(e){
+	// 	if(_this.Ele.querySelector(".editor-body").innerHTML =="<p><br></p>"){
+	// 		_this.Ele.querySelector(".editor-placeholder").style.display = "block";
+	// 	}else{
+	// 		_this.Ele.querySelector(".editor-placeholder").style.display = "none";
+	// 	}
+	// },false);
 
 	//粘贴监听
 	editorBody.addEventListener("paste",function(e){
