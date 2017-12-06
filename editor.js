@@ -1,6 +1,7 @@
 /*******************************************************************************
 * ZhuEditor 简答的文本编辑工具、件支持简单的图文排版；
 * 去除多余样式的干扰，只保留最简单的标签，更有利于阅读。
+* 难到怀疑人生*
 *******************************************************************************/
 
 function ZhuEditor(EleId,fn){
@@ -86,12 +87,10 @@ ZhuEditor.prototype.init = function(){
 	underline.addEventListener("click",function(e){
 		document.execCommand('underline', false, null);
 	},false);
-
 	//插入图片
 	input.addEventListener("change",function(e){
-		editorBody.focus();
 		_this.uploadFn(e,function(url){
-			document.execCommand("insertHtml", false, "<p><img src="+url+">");
+			document.execCommand("insertHtml", false, "<p><img src="+url+"></p>");
 		});
 	});
 }
