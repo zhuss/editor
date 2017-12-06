@@ -14,10 +14,11 @@ function ZhuEditor(EleId,fn){
 ZhuEditor.prototype.init = function(){
 	this.Ele.innerHTML = 
 	`<div class="editor-bar">
-		<button class="bold">粗体</button>
-		<button class="italic">斜体</button>
-		<button class="underline">下划线</button>
-		<span class="in"><button>上传图片</button><input class="input" type="file" accept="image/jpg"/><span>
+		<button type="button" class="bold">粗体</button>
+		<button type="button" class="italic">斜体</button>
+		<button type="button" class="underline">下划线</button>
+		<button type="button" class="link">链接</button>
+		<span class="in"><button type="button">上传图片</button><input class="input" type="file" accept="image/jpg"/><span>
 	</div>
 	<div class="editor-body" contenteditable>
 		<p><br></p>
@@ -28,6 +29,7 @@ ZhuEditor.prototype.init = function(){
 	var italic = this.Ele.querySelector(".italic");
 	var underline = this.Ele.querySelector(".underline");
 	var img = this.Ele.querySelector(".img");
+	var link = this.Ele.querySelector(".link");
 	var input = this.Ele.querySelector(".input");
 	var _this = this;
 
@@ -87,6 +89,15 @@ ZhuEditor.prototype.init = function(){
 	underline.addEventListener("click",function(e){
 		document.execCommand('underline', false, null);
 	},false);
+
+	//添加链接
+	link.addEventListener("click",function(e){
+		var href = prompt("请输入链接","http://");
+		if(href){
+			document.execCommand('createlink', false,href);
+		}
+	},false);
+
 	//插入图片
 	input.addEventListener("change",function(e){
 		_this.uploadFn(e,function(url){
