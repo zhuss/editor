@@ -12,17 +12,7 @@ function ZhuEditor(EleId,fn){
 }
 
 ZhuEditor.prototype.init = function(){
-	this.Ele.innerHTML = 
-	`<div class="editor-bar">
-		<button type="button" class="bold">粗体</button>
-		<button type="button" class="italic">斜体</button>
-		<button type="button" class="underline">下划线</button>
-		<button type="button" class="link">链接</button>
-		<span class="in"><button type="button">上传图片</button><input class="input" type="file" accept="image/jpg"/><span>
-	</div>
-	<div class="editor-body" contenteditable>
-		<p><br></p>
-	</div>`;
+	this.Ele.innerHTML = '<div class="editor-bar"><button type="button" class="bold"><i class="simditor-icon simditor-icon-bold"></i></button><button type="button" class="italic"><i class="simditor-icon simditor-icon-italic"></i></button><button type="button" class="underline"><i class="simditor-icon simditor-icon-underline"></i></button><button type="button" class="link"><i class="simditor-icon simditor-icon-link"></i></button><button type="button" class="unlink"><i class="simditor-icon simditor-icon-unlink"></i></button><span class="in"><button type="button"><i class="simditor-icon simditor-icon-picture-o"></i></button><input class="input" type="file" accept="image/jpg"/><span></div><div class="editor-body" contenteditable><p><br></p></div>';
 	this.Ele.setAttribute("class","editor");
 	var editorBody = this.Ele.querySelector(".editor-body");
 	var bold = this.Ele.querySelector(".bold");
@@ -31,6 +21,7 @@ ZhuEditor.prototype.init = function(){
 	var img = this.Ele.querySelector(".img");
 	var link = this.Ele.querySelector(".link");
 	var input = this.Ele.querySelector(".input");
+	var unlink = this.Ele.querySelector(".unlink");
 	var _this = this;
 
 	editorBody.addEventListener("keydown",function(e){
@@ -64,10 +55,20 @@ ZhuEditor.prototype.init = function(){
 
 	//粘贴监听
 	editorBody.addEventListener("paste",function(e){
-	  	var text = "";
-	  	text = e.clipboardData.getData('text/plain');
-	  	document.execCommand("insertText",false,text);
-	  	e.preventDefault();
+		    e.preventDefault();
+		var clipboardData = e.clipboardData || window.clipboardData;
+		var text = clipboardData.getData('text/plain');
+		    document.execCommand("insertText",false,text);
+
+		var html =  clipboardData.getData('text/html');
+		var div = document.createElement("div");
+		    div.innerHTML = html;
+		var imgs =  div.querySelectorAll("img");
+		for(var i = 0; i < imgs.length;i++){
+			if(imgs[i].src) {
+			  document.execCommand("insertHtml", false, "<p><img src="+imgs[i].src+"></p>");
+			}
+		}
 	},false);
 
 	//阻止拖拽事件
@@ -98,6 +99,11 @@ ZhuEditor.prototype.init = function(){
 		}
 	},false);
 
+	//去除链接
+	unlink.addEventListener("click",function(e){
+		document.execCommand('unlink', false, null);
+	},false);
+
 	//插入图片
 	input.addEventListener("change",function(e){
 		_this.uploadFn(e,function(url){
@@ -106,10 +112,12 @@ ZhuEditor.prototype.init = function(){
 	});
 }
 
+//获取输入的富文本
 ZhuEditor.prototype.getValue = function(){
 	return 	this.Ele.querySelector(".editor-body").innerHTML;
 }
 
+//设置富文本
 ZhuEditor.prototype.setValue = function(val){
  	this.Ele.querySelector(".editor-body").innerHTML = val;
 }
