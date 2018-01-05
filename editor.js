@@ -12,7 +12,7 @@ function ZhuEditor(EleId,fn){
 }
 
 ZhuEditor.prototype.init = function(){
-	this.Ele.innerHTML = '<div class="editor-bar"><button type="button" class="bold"><i class="simditor-icon simditor-icon-bold"></i></button><button type="button" class="italic"><i class="simditor-icon simditor-icon-italic"></i></button><button type="button" class="underline"><i class="simditor-icon simditor-icon-underline"></i></button><button type="button" class="link"><i class="simditor-icon simditor-icon-link"></i></button><button type="button" class="unlink"><i class="simditor-icon simditor-icon-unlink"></i></button><span class="in"><button type="button"><i class="simditor-icon simditor-icon-picture-o"></i></button><input class="input" type="file" accept="image/jpg"/><span></div><div class="editor-body" contenteditable><p><br></p></div>';
+	this.Ele.innerHTML = '<div class="editor-bar"><button type="button" class="bold"><i class="simditor-icon simditor-icon-bold"></i></button><button type="button" class="italic"><i class="simditor-icon simditor-icon-italic"></i></button><button type="button" class="underline"><i class="simditor-icon simditor-icon-underline"></i></button><button type="button" class="link"><i class="simditor-icon simditor-icon-link"></i></button><button type="button" class="unlink"><i class="simditor-icon simditor-icon-unlink"></i></button><span class="in"><button type="button"><i class="simditor-icon simditor-icon-picture-o"></i></button><input class="input" type="file" accept="image/jpg"/></span></div><div class="editor-body" contenteditable><p><br></p></div>';
 	this.Ele.setAttribute("class","editor");
 	var editorBody = this.Ele.querySelector(".editor-body");
 	var bold = this.Ele.querySelector(".bold");
