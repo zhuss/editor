@@ -231,8 +231,6 @@
 }
 .editor-body p img{
 	max-width: 100%;
-	display: block;
-	margin: 0 auto;
 }
 
 .editor-body a:link,.editor-body a:visited{
