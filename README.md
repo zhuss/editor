@@ -15,6 +15,7 @@ ZhuEditor 简的文本编辑工具、仅支持简单的图文排版；
 
 ```
 
-编辑器的开发难到怀疑人生。
+编辑器的开发难到怀疑人生。但是还是可以尝试一下的，
 
-[https://zhuss.github.io/editor/index.html](https://zhuss.github.io/editor/index.html)
+[老版的垃圾的](https://zhuss.github.io/editor/index.html)
+[新版的棒棒的](https://zhuss.github.io/editor-new/dist/index.html)
